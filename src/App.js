@@ -1,25 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Bodyparts from './Bodyparts';
+import Exercises from './Exercises';
 
+//this is the top-level component that renders the Bodyparts and Exercises components
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [data, setData] = useState(null);
+
+    return (
+        <div>
+            <Bodyparts onBodypartChange={(bodypart) => setData(bodypart)} />
+            {data && <Exercises bodypart={data} />}
+        </div>
+    );
 }
 
 export default App;
